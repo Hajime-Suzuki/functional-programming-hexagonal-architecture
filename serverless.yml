@@ -13,6 +13,16 @@ provider:
   environment:
     tableName: ${self:provider.stage}-${self:service.name}__table
 
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - 'dynamodb:Query'
+        - 'dynamodb:GetItem'
+        - 'dynamodb:PutItem'
+        - 'dynamodb:UpdateItem'
+        - 'dynamodb:DeleteItem'
+      Resource: 'arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:*'
+
 custom:
   serverless-offline:
     httpPort: 4000
@@ -28,6 +38,13 @@ custom:
     start:
       port: 8000
       inMemory: true
+      migrate: true
+      seed: true
+    seed:
+      dev:
+        sources:
+          - table: ${self:provider.environment.tableName}
+            sources: ['.seeds/surveys.json']
 
 package:
   individually: true
@@ -36,3 +53,4 @@ plugins:
   - serverless-dynamodb-local
   - serverless-webpack
   - serverless-offline
+  - serverless-pseudo-parameters

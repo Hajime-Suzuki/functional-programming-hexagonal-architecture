@@ -1,30 +1,50 @@
 import { Survey } from '@core/survey'
+import { Env } from '@core/survey/use-cases/get-survey-by-id'
+import { NotFoundError, toNotFoundError } from '@utils/errors/not-found-error'
 import { RepositoryError } from '@utils/errors/repository-error'
-import { liftPromise, ReaderTaskEither, RTE, TE, withEnvL } from '@utils/fp'
-import { pipe } from 'fp-ts/lib/function'
+import { E, get, ReaderTaskEither, RTE, TE } from '@utils/fp'
+import { flow, pipe } from 'fp-ts/lib/function'
+import { getClient, toPK, toSK } from './survey-repository-client'
 
-interface Env {
-  db: string
-}
 const _ = RTE
 
-const getByFormId = (formId: string): ReaderTaskEither<Env, RepositoryError, Survey> =>
+const getByFormId = (
+  formId: string,
+): ReaderTaskEither<Env, RepositoryError | NotFoundError, Survey> =>
   pipe(
-    _.fromTaskEither(liftPromise(sleep())),
-    _.chain(
-      withEnvL(_env => {
-        const survey: Survey = {
-          id: formId,
-          closeDate: '2020-01-01',
-          questions: [{ id: 'q1', type: 'select', options: ['test1', 'test2'] }],
-        }
+    getClient,
+    _.chain(client => {
+      const process = client.get(toPK(formId), toSK())
 
-        return TE.of(survey)
-      }),
-    ),
+      const output = pipe(
+        process,
+        TE.map(get('Item')),
+        TE.chain(
+          flow(E.fromNullable(toNotFoundError(`survey ${formId} not found`)), TE.fromEither),
+        ),
+        TE.map(toSurvey),
+      )
+
+      return _.fromTaskEither(output)
+    }),
   )
 
-const sleep = () => new Promise(r => setTimeout(() => r(), 1000))
+type SurveyResponse = {
+  SK: string
+  PK: string
+  closeDate: string
+  questions: {
+    type: string
+    options: string[]
+    id: string
+  }[]
+}
+
+const toSurvey = (data: SurveyResponse): Survey => ({
+  id: data.PK.replace('survey_', ''),
+  closeDate: data.closeDate,
+  questions: data.questions as Survey['questions'],
+})
 
 export const surveyRepo = {
   getByFormId,

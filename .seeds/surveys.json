@@ -1,0 +1,8 @@
+[
+  {
+    "PK": "survey_1234",
+    "SK": "survey",
+    "closeDate": "2020-01-01",
+    "questions": [{ "id": "abc", "type": "select", "options": ["option1", "option2"] }]
+  }
+]

@@ -2,11 +2,12 @@ Survey app API to show fp-ts examples
 
 ### Goal
 
-- one day project
+- keep this simple
 - hexagonal architecture with fp-ts
 
 ### Functionalities
 
+- get survey by form id
 - create survey
 - update survey
 - create response
