@@ -10,7 +10,7 @@ module.exports = {
   resolve: {
     extensions: ['.json', '.ts'],
     alias: {
-      '@modules': path.resolve(__dirname, './src/modules'),
+      '@core': path.resolve(__dirname, './src/core'),
     },
   },
   output: {
@@ -34,8 +34,8 @@ module.exports = {
       async: true,
       eslint: {
         enabled: true,
-        files: './src/**/*.{ts,tsx}'
-      }
+        files: './src/**/*.{ts,tsx}',
+      },
     }),
   ],
 }

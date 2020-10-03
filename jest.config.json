@@ -4,5 +4,5 @@
   "resetMocks": true,
   "testMatch": ["**/__tests__/**/*.test.ts"],
   "globals": { "diagnostics": { "warnOnly": true } },
-  "moduleNameMapper": { "^@modules/(.+)": "<rootDir>/src/modules/$1" }
+  "moduleNameMapper": { "^@core/(.+)": "<rootDir>/src/core/$1" }
 }
