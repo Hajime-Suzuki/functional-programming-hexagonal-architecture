@@ -1,0 +1,38 @@
+service:
+  name: fp-ts-survey
+
+functions: ${file(./resources/functions.yml)}
+resources: ${file(./resources/resources.yml)}
+
+provider:
+  name: aws
+  region: 'eu-central-1'
+  stage: ${opt:stage, 'dev'}
+  runtime: nodejs12.x
+  profile: 'opc-sandbox'
+  environment:
+    tableName: ${self:provider.stage}-${self:service.name}__table
+
+custom:
+  serverless-offline:
+    httpPort: 4000
+
+  webpack:
+    includeModules:
+      forceExclude:
+        - aws-sdk
+
+  dynamodb:
+    stages:
+      - dev
+    start:
+      port: 8000
+      inMemory: true
+
+package:
+  individually: true
+
+plugins:
+  - serverless-dynamodb-local
+  - serverless-webpack
+  - serverless-offline

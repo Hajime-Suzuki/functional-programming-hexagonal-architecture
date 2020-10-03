@@ -1,0 +1,6 @@
+main:
+  handler: src/main.handler
+  events:
+    - http:
+        path: /{userId}
+        method: post
