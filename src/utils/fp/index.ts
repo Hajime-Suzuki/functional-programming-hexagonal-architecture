@@ -4,6 +4,7 @@ export * from './reader-task-either'
 export * from './functions'
 export * from './decode'
 export * from './misc'
+export * from './debug'
 
 export * as E from 'fp-ts/lib/Either'
 export { Either } from 'fp-ts/lib/Either'

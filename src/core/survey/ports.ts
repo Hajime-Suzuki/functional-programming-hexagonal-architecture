@@ -17,4 +17,5 @@ export type SurveyRepository = {
   getByFormId: (
     formId: string,
   ) => ReaderTaskEither<DBPorts, RepositoryError | NotFoundError, Survey>
+  create: (data: Survey) => ReaderTaskEither<DBPorts, RepositoryError, Survey>
 }

@@ -21,7 +21,7 @@ export const Survey = D.type({
   questions: D.array(Question),
 })
 
-const futureDate: D.Decoder<unknown, string> = {
+const FutureDate: D.Decoder<unknown, string> = {
   decode: str => {
     if (typeof str !== 'string') return D.failure(str, 'string')
     D.string.decode(str)
@@ -33,11 +33,13 @@ const futureDate: D.Decoder<unknown, string> = {
 }
 
 const CreateSurveyInput = D.type({
-  closeDate: futureDate,
+  closeDate: FutureDate,
   questions: D.array(Question),
 })
 
+type CreateSurveyInput = D.TypeOf<typeof CreateSurveyInput>
+
 export const mkSurveyFromInput = flow(
   decodeWith(CreateSurveyInput),
-  E.map(v => ({ id: shortId.generate(), ...v })),
+  E.map<CreateSurveyInput, Survey>(v => ({ id: shortId.generate(), ...v })),
 )
