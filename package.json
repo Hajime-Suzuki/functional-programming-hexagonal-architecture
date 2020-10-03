@@ -18,6 +18,7 @@
     "@types/aws-lambda": "^8.10.63",
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.2",
+    "@types/shortid": "^0.0.29",
     "@typescript-eslint/eslint-plugin": "^4.3.0",
     "@typescript-eslint/parser": "^4.3.0",
     "aws-sdk": "^2.766.0",
@@ -42,7 +43,9 @@
     "webpack-node-externals": "^2.5.2"
   },
   "dependencies": {
+    "date-fns": "^2.16.1",
     "fp-ts": "^2.8.3",
-    "io-ts": "^2.2.10"
+    "io-ts": "^2.2.10",
+    "shortid": "^2.2.15"
   }
 }

@@ -2,10 +2,11 @@ import { getSurveyById } from '@core/survey/use-cases'
 import { getPathParams, toApiGatewayResponse } from '@utils/api-gateway'
 import { TABLE_NAME } from '@utils/constants'
 import { dbClient } from '@utils/dynamodb/document-client'
-import { RTE } from '@utils/fp'
+import { RTE, singleton } from '@utils/fp'
 import { APIGatewayEvent } from 'aws-lambda'
 import { pipe } from 'fp-ts/lib/function'
 
+const _ = RTE
 export const handler = async (event: APIGatewayEvent) => {
   const env = {
     db: {
@@ -15,6 +16,6 @@ export const handler = async (event: APIGatewayEvent) => {
   }
   const params = getPathParams<'formId'>(event)
 
-  const res = pipe(RTE.fromEither(params), RTE.chain(getSurveyById))
+  const res = pipe(_.fromEither(params), _.chain(getSurveyById), _.map(singleton('survey')))
   return pipe(await res(env)(), toApiGatewayResponse())
 }

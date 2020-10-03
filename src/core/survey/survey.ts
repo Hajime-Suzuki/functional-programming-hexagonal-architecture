@@ -1,4 +1,8 @@
+import { decodeWith, E } from '@utils/fp'
+import { isFuture, isValid } from 'date-fns'
+import { flow } from 'fp-ts/lib/function'
 import * as D from 'io-ts/Decoder'
+import * as shortId from 'shortid'
 
 type QuestionType = D.TypeOf<typeof QuestionType>
 const QuestionType = D.literal('select', 'multiple-choice', 'open')
@@ -16,3 +20,24 @@ export const Survey = D.type({
   closeDate: D.string,
   questions: D.array(Question),
 })
+
+const futureDate: D.Decoder<unknown, string> = {
+  decode: str => {
+    if (typeof str !== 'string') return D.failure(str, 'string')
+    D.string.decode(str)
+    const mayDate = new Date(str)
+
+    if (!isValid(mayDate)) return D.failure(str, 'valid date')
+    return isFuture(mayDate) ? D.success(str) : D.failure(str, '> today')
+  },
+}
+
+const CreateSurveyInput = D.type({
+  closeDate: futureDate,
+  questions: D.array(Question),
+})
+
+export const mkSurveyFromInput = flow(
+  decodeWith(CreateSurveyInput),
+  E.map(v => ({ id: shortId.generate(), ...v })),
+)
