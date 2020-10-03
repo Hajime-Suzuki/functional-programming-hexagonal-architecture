@@ -11,6 +11,8 @@ module.exports = {
     extensions: ['.json', '.ts'],
     alias: {
       '@core': path.resolve(__dirname, './src/core'),
+      '@utils': path.resolve(__dirname, './src/utils'),
+      '@resources': path.resolve(__dirname, './src/driven-adapters'),
     },
   },
   output: {

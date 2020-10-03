@@ -1,6 +1,13 @@
-main:
+create-survey:
   handler: src/primary-adapters/create-survey.handler
   events:
     - http:
         path: /survey
         method: POST
+
+get-survey:
+  handler: src/primary-adapters/get-survey-by-id.handler
+  events:
+    - http:
+        path: /survey/{formId}
+        method: GET

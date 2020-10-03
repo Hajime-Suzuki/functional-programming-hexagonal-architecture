@@ -1,3 +1,1 @@
-export const createSurvey = () => {
-  return { test: 'yes' }
-}
+export const createSurvey = () => null

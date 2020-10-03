@@ -1,9 +1,6 @@
-import { createSurvey } from '@core/survey/use-cases'
+import { toApiGatewayResponse } from '@utils/api-gateway'
+import { E } from '@utils/fp'
 
 export const handler = async () => {
-  const res = createSurvey()
-  return {
-    statusCode: 200,
-    body: JSON.stringify(res),
-  }
+  return toApiGatewayResponse()(E.right({ test: 'yes' }))
 }
