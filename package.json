@@ -41,5 +41,8 @@
     "webpack": "^4.44.2",
     "webpack-node-externals": "^2.5.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "fp-ts": "^2.8.3",
+    "io-ts": "^2.2.10"
+  }
 }
