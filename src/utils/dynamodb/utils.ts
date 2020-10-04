@@ -42,7 +42,6 @@ const getClient: ReaderTaskEither<DBPorts, RepositoryError, Client<any, any, any
     }
 
     const query: Client['query'] = input => {
-      console.log(input)
       const res = db.client
         .query({
           TableName: db.tableName,

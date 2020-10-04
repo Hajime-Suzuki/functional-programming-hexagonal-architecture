@@ -19,6 +19,7 @@
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.2",
     "@types/shortid": "^0.0.29",
+    "@types/validator": "^13.1.0",
     "@typescript-eslint/eslint-plugin": "^4.3.0",
     "@typescript-eslint/parser": "^4.3.0",
     "aws-sdk": "^2.766.0",
@@ -47,6 +48,7 @@
     "fp-ts": "^2.8.3",
     "fp-ts-contrib": "^0.1.21",
     "io-ts": "^2.2.10",
-    "shortid": "^2.2.15"
+    "shortid": "^2.2.15",
+    "validator": "^13.1.17"
   }
 }

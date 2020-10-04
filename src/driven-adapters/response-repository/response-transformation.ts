@@ -14,8 +14,13 @@ export const toResponse = (data: DBResponse): Response => {
   }
 }
 
-export const fromResponse = (_data: Response): DBResponse => {
-  throw new Error('implement')
+export const fromResponse = (data: Response): DBResponse => {
+  return {
+    PK: toPK(data.formId),
+    SK: toSK(data.email),
+    email: data.email,
+    answers: data.answers,
+  }
 }
 
 const SKPrefix = 'response_'

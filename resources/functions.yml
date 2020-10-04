@@ -23,5 +23,12 @@ get-responses-by-form-id:
   handler: src/primary-adapters/response/get-by-form-id.handler
   events:
     - http:
-        path: /responses/{formId}
+        path: /surveys/{formId}/responses
         method: GET
+
+create-response:
+  handler: src/primary-adapters/response/create-response.handler
+  events:
+    - http:
+        path: /responses
+        method: POST

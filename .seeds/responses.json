@@ -9,5 +9,16 @@
         "value": ["test"]
       }
     ]
+  },
+  {
+    "PK": "survey_1234",
+    "SK": "response_test1@test.com",
+    "email": "test1@test.com",
+    "answers": [
+      {
+        "questionId": "1",
+        "value": ["something"]
+      }
+    ]
   }
 ]
