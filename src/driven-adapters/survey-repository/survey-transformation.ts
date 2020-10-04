@@ -14,8 +14,8 @@ export const fromSurvey = (data: Survey): DBSurvey => ({
   questions: data.questions,
 })
 
-const toPK = (id: Survey['id']): PK => 'survey_' + id
-const fromPK = (id: PK) => id.replace('survey_', '')
+export const toPK = (id: Survey['id']): PK => 'survey_' + id
+export const fromPK = (id: PK) => id.replace('survey_', '')
 const toSK = (): SK => '#survey'
 
 export const mkDBKey = (id: Survey['id']): DBKey => ({ PK: toPK(id), SK: toSK() })

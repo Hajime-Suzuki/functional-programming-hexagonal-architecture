@@ -1,4 +1,4 @@
-import { getSurveyById } from '@core/survey/use-cases'
+import { getSurveyById } from '@core/use-cases'
 import { getPathParams, toApiGatewayResponse } from '@utils/api-gateway'
 import { TABLE_NAME } from '@utils/constants'
 import { dbClient } from '@utils/dynamodb/document-client'

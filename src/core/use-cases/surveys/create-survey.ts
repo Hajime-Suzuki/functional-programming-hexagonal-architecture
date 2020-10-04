@@ -4,8 +4,8 @@ import { InputError } from '@utils/errors/input-error'
 import { RepositoryError } from '@utils/errors/repository-error'
 import { get, ReaderTaskEither, RTE } from '@utils/fp'
 import { flow } from 'fp-ts/lib/function'
-import { CommonPorts } from '../ports'
-import { mkSurveyFromInput, Survey } from '../survey'
+import { CommonPorts } from '../../ports'
+import { mkSurveyFromInput, Survey } from '../../survey'
 
 const _ = RTE
 type Env = CommonPorts

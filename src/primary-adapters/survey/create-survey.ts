@@ -1,4 +1,4 @@
-import { createSurvey } from '@core/survey/use-cases'
+import { createSurvey } from '@core/use-cases'
 import { apiGatewayResponse, decodeBody, toApiGatewayResponse } from '@utils/api-gateway'
 import { TABLE_NAME } from '@utils/constants'
 import { dbClient } from '@utils/dynamodb/document-client'

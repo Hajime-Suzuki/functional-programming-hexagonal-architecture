@@ -1,20 +1,27 @@
 create-survey:
-  handler: src/primary-adapters/create-survey.handler
+  handler: src/primary-adapters/survey/create-survey.handler
   events:
     - http:
-        path: /survey
+        path: /surveys
         method: POST
 
 get-survey:
-  handler: src/primary-adapters/get-survey-by-id.handler
+  handler: src/primary-adapters/survey/get-survey-by-id.handler
   events:
     - http:
-        path: /survey/{formId}
+        path: /surveys/{formId}
         method: GET
 
 update-survey:
-  handler: src/primary-adapters/update-survey.handler
+  handler: src/primary-adapters/survey/update-survey.handler
   events:
     - http:
-        path: /survey/{formId}
+        path: /surveys/{formId}
         method: PUT
+
+get-responses-by-form-id:
+  handler: src/primary-adapters/response/get-by-form-id.handler
+  events:
+    - http:
+        path: /responses/{formId}
+        method: GET

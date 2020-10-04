@@ -44,7 +44,7 @@ custom:
       dev:
         sources:
           - table: ${self:provider.environment.tableName}
-            sources: ['.seeds/surveys.json']
+            sources: ['.seeds/surveys.json', '.seeds/responses.json']
 
 package:
   individually: true

@@ -1,0 +1,13 @@
+[
+  {
+    "PK": "survey_1234",
+    "SK": "response_test@test.com",
+    "email": "test@test.com",
+    "answers": [
+      {
+        "questionId": "1",
+        "value": ["test"]
+      }
+    ]
+  }
+]
