@@ -43,3 +43,11 @@ export const mkSurveyFromInput = flow(
   decodeWith(CreateSurveyInput),
   E.map<CreateSurveyInput, Survey>(v => ({ id: shortId.generate(), ...v })),
 )
+
+const UpdateSurveyInput = D.partial({
+  closeDate: FutureDate,
+  questions: D.array(Question),
+})
+export type UpdateSurveyInput = D.TypeOf<typeof UpdateSurveyInput>
+
+export const mkUpdateSurveyInput = decodeWith(UpdateSurveyInput)

@@ -6,6 +6,10 @@ export const dbClient = new DynamoDB.DocumentClient(
     ? {
         region: 'localhost',
         endpoint: 'http://localhost:8000',
+        credentials: {
+          accessKeyId: '_',
+          secretAccessKey: '_',
+        },
       }
     : {},
 )

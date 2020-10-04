@@ -45,6 +45,7 @@
   "dependencies": {
     "date-fns": "^2.16.1",
     "fp-ts": "^2.8.3",
+    "fp-ts-contrib": "^0.1.21",
     "io-ts": "^2.2.10",
     "shortid": "^2.2.15"
   }

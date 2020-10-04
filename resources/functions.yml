@@ -11,3 +11,10 @@ get-survey:
     - http:
         path: /survey/{formId}
         method: GET
+
+update-survey:
+  handler: src/primary-adapters/update-survey.handler
+  events:
+    - http:
+        path: /survey/{formId}
+        method: PUT

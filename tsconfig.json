@@ -4,8 +4,8 @@
     "paths": {
       "@core/*": ["core/*"],
       "@utils/*": ["utils/*"],
-      "@resources/*": ["driven-adapters/*"],
-      "@resources": ["driven-adapters"]
+      "@resources": ["driven-adapters"],
+      "@resources/*": ["driven-adapters/*"]
     },
     "module": "commonjs",
     "moduleResolution": "node",

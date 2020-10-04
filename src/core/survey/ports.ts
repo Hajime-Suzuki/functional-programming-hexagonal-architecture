@@ -2,7 +2,7 @@ import { NotFoundError } from '@utils/errors/not-found-error'
 import { RepositoryError } from '@utils/errors/repository-error'
 import { DocumentClient } from 'aws-sdk/clients/dynamodb'
 import { ReaderTaskEither } from 'fp-ts/lib/ReaderTaskEither'
-import { Survey } from '.'
+import { Survey, UpdateSurveyInput } from '.'
 
 export type CommonPorts = DBPorts
 
@@ -18,4 +18,7 @@ export type SurveyRepository = {
     formId: string,
   ) => ReaderTaskEither<DBPorts, RepositoryError | NotFoundError, Survey>
   create: (data: Survey) => ReaderTaskEither<DBPorts, RepositoryError, Survey>
+  update: (
+    id: Survey['id'],
+  ) => (data: UpdateSurveyInput) => ReaderTaskEither<DBPorts, RepositoryError, Survey>
 }

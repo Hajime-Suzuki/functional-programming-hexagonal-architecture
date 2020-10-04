@@ -1,16 +1,17 @@
 import { DBPorts } from '@core/survey/ports'
 import { WithClient } from '@resources/types'
+import { DBUpdateInput } from '@utils/dynamodb/utils'
 import { RepositoryError, toRepositoryError } from '@utils/errors/repository-error'
 import { liftPromise, ReaderTaskEither, RTE, TE, withEnv } from '@utils/fp'
 import { flow, pipe } from 'fp-ts/lib/function'
-import { DBSurvey, PK, SK, SurveyClient } from './types'
+import { DBKey, DBSurvey, SurveyClient } from './types'
 
 const getClient: ReaderTaskEither<DBPorts, RepositoryError, SurveyClient> = withEnv(({ db }) => {
-  const get = (PK: PK, SK: SK) => {
+  const get = (Key: DBKey) => {
     const res = db.client
       .get({
         TableName: db.tableName,
-        Key: { PK: PK.value, SK: SK.value },
+        Key,
       })
       .promise()
 
@@ -28,9 +29,23 @@ const getClient: ReaderTaskEither<DBPorts, RepositoryError, SurveyClient> = with
     return liftPromise(res, toRepositoryError)
   }
 
+  const update = (Key: DBKey) => (data: DBUpdateInput) => {
+    const res = db.client
+      .update({
+        TableName: db.tableName,
+        Key,
+        ReturnValues: 'ALL_NEW',
+        ...data,
+      })
+      .promise()
+
+    return liftPromise(res, toRepositoryError)
+  }
+
   return TE.of({
     get,
     create,
+    update,
   })
 })
 
