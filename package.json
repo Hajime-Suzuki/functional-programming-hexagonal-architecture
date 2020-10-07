@@ -1,8 +1,8 @@
 {
-  "name": "fp-ts-examples",
+  "name": "fp-hexagonal-architecture-examples",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:Hajime-Suzuki/typescript-serverless-starter.git",
+  "repository": "git@github.com:Hajime-Suzuki/functional-programming-hexagonal-architecture.git",
   "author": "Hajime-Suzuki <hajime.doublebass@gmail.com>",
   "license": "MIT",
   "scripts": {
