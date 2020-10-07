@@ -105,6 +105,5 @@ dist
 
 .serverless
 .webpack
-**/*.http
 .build/
 sandbox.ts

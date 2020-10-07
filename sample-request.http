@@ -1,0 +1,42 @@
+# Survey
+GET http://localhost:4000/dev/surveys/1234      
+
+###
+
+POST http://localhost:4000/dev/surveys
+Content-Type: application/json
+
+{
+  "closeDate": "2025-10-15",
+  "questions": [
+    { "id": "abc", "type": "select", "options": ["option1", "option2"] }
+  ]
+}
+###
+PUT http://localhost:4000/dev/surveys/1234
+Content-Type: application/json
+
+{
+  "closeDate": "2020-10-11",
+  "questions": [
+    { "id": "abc", "type": "select", "options": ["option100", "option2"] }
+  ]
+}
+
+###
+
+# Response
+
+GET http://localhost:4000/dev/surveys/1234/responses
+
+###
+POST  http://localhost:4000/dev/responses
+Content-Type: application/json
+
+{
+  "formId": "1234",
+  "email": "test@test2.com",
+  "answers": [
+    {"questionId": "1", "value": ["test"] }
+  ]
+}
