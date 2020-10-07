@@ -9,7 +9,6 @@ provider:
   region: 'eu-central-1'
   stage: ${opt:stage, 'dev'}
   runtime: nodejs12.x
-  profile: 'opc-sandbox'
   environment:
     tableName: ${self:provider.stage}-${self:service.name}__table
 
